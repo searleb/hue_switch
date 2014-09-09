@@ -1,4 +1,6 @@
+// set global object
 var lights = {};
+// define URL of Hue Bridge
 var bridgeURL = 'http://192.168.0.2/api'
 
 // gets info of all lights
@@ -13,8 +15,9 @@ var getAllLights = function() {
 		}
 	});
 };
-
+//  switch on function
 var switchOn = function () {
+	// runs a loop with -2 length so the last two lights added do not turn on
 	for (var i = 0; i < ((lights.count.length)-2); i++) {
 		lights.count[i]
 		$.ajax({
@@ -31,7 +34,9 @@ var switchOn = function () {
 	};
 };
 
+// switch off function
 var switchOff = function () {
+	// runs loops with full length so all lights are turned off
 	for (var i = 0; i < lights.count.length ; i++) {
 		lights.count[i]
 		$.ajax({
@@ -48,6 +53,7 @@ var switchOff = function () {
 	};
 };
 
+// when page is ready, get all lights info and set up click events
 $(document).ready(function(){
 
 	getAllLights();
